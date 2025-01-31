@@ -25,6 +25,7 @@ body{
   .table {
     width: 700px;
     border-collapse: collapse;
+      box-shadow: 0 2px #999;
   }
 
   .heads{
