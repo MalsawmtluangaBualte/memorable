@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engnge kan tihang</title>
+    <style>
+	:root {
+    /* Romantic Theme Colors */
+    --romantic-bg: linear-gradient(135deg, #ff69b4, #ff1493);
+    --romantic-card: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    --romantic-text: white;
+    
+    /* Aesthetic Theme Colors */
+    --aesthetic-bg: linear-gradient(135deg, #a8edea, #fed6e3);
+    --aesthetic-card: linear-gradient(45deg, #ffdee9, #b5fffc);
+    --aesthetic-text: #2d3436;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    color: var(--romantic-text);
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+body.romantic {
+    background: var(--romantic-bg);
+    color: var(--romantic-text);
+}
+
+body.aesthetic {
+    background: var(--aesthetic-bg);
+    color: var(--aesthetic-text);
+}
+
+.theme-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.theme-btn {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: 2px solid currentColor;
+    color: inherit;
+}
+
+.theme-btn:hover {
+    transform: scale(1.05);
+}
+
+.container {
+    text-align: center;
+    z-index: 1;
+}
+
+.cards-container {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+    perspective: 1000px;
+    min-height: 300px;
+    position: relative;
+    width: 800px;
+}
+
+.card {
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card.selected {
+    border: 3px solid #4CAF50;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    background: white;
+    transition: all 0.5s ease;
+}
+
+.romantic .card-back {
+    background: var(--romantic-card);
+    color: var(--romantic-text);
+}
+
+.aesthetic .card-back {
+    background: var(--aesthetic-card);
+    color: var(--aesthetic-text);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    font-size: 5em;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    min-height: 50px;
+}
+
+.start-btn {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid currentColor;
+    color: inherit;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 30px;
+}
+
+.start-btn:hover {
+    transform: scale(1.05);
+}
+
+.start-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Romantic Theme Animations */
+.floating-element {
+    position: absolute;
+    pointer-events: none;
+    animation: float-up var(--duration) ease-in-out infinite;
+    opacity: 0.6;
+    z-index: 0;
+}
+
+@keyframes float-up {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Aesthetic Theme Animations */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: float var(--duration) ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(10px); }
+}
+
+.start-btn2 {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid currentColor;
+    color: inherit;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 30px;
+}
+
+.start-btn2:hover {
+    transform: scale(1.05);
+}
+
+.start-btn2:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+	</style>
+    
+</head>
+<body class="romantic">
+    <div class="theme-switch">
+        <button class="theme-btn" onclick="toggleTheme()">Switch Theme</button>
+    </div>
+    <div class="container">
+        <h1>Thlang rawh le🤣🤣</h1>
+        <button class="start-btn" onclick="startGame()">Start Shuffle</button>
+        <div class="cards-container">
+            <div class="card" data-number="1" style="left: 0">
+                <div class="card-face card-front">1</div>
+                <div class="card-face card-back">♥️</div>
+            </div>
+            <div class="card" data-number="2" style="left: 250px">
+                <div class="card-face card-front">2</div>
+                <div class="card-face card-back">♥️</div>
+            </div>
+            <div class="card" data-number="3" style="left: 500px">
+                <div class="card-face card-front">3</div>
+                <div class="card-face card-back">♥️</div>
+            </div>
+        </div>
+        <div class="result"></div>
+    </div>
+    <button class="start-btn2" onclick="location.href='index.html'">Back</button>
+
+    <audio id="shuffleSound" preload="auto">
+        <source src="https://cdnjs.cloudflare.com/ajax/libs/sound-effects/1.0.1/card-shuffle.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+	const cards = document.querySelectorAll('.card');
+        const result = document.querySelector('.result');
+        const startBtn = document.querySelector('.start-btn');
+        const shuffleSound = document.getElementById('shuffleSound');
+        let isShuffling = false;
+        let canSelect = false;
+        let positions = [0, 250, 500];
+        let cardPositions = [0, 1, 2];
+        let currentTheme = 'romantic';
+
+        function toggleTheme() {
+            const body = document.body;
+            const title = document.querySelector('h1');
+            
+            if (currentTheme === 'romantic') {
+                body.classList.remove('romantic');
+                body.classList.add('aesthetic');
+                title.textContent = '✨ Thlang Thlang tirawh le ✨';
+                currentTheme = 'aesthetic';
+                clearAnimations();
+                createAestheticAnimations();
+            } else {
+                body.classList.remove('aesthetic');
+                body.classList.add('romantic');
+                title.textContent = '♥️ Card Game ♥️';
+                currentTheme = 'romantic';
+                clearAnimations();
+                createRomanticAnimations();
+            }
+        }
+
+        function clearAnimations() {
+            const elements = document.querySelectorAll('.floating-element, .bubble');
+            elements.forEach(el => el.remove());
+        }
+
+        function createRomanticAnimations() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-element';
+                heart.innerHTML = '♥️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+                heart.style.setProperty('--duration', Math.random() * 3 + 4 + 's');
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 300);
+        }
+
+        function createAestheticAnimations() {
+            setInterval(() => {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.left = Math.random() * 100 + 'vw';
+                bubble.style.top = Math.random() * 100 + 'vh';
+                bubble.style.width = bubble.style.height = Math.random() * 50 + 20 + 'px';
+                bubble.style.setProperty('--duration', Math.random() * 3 + 4 + 's');
+                document.body.appendChild(bubble);
+                setTimeout(() => bubble.remove(), 5000);
+            }, 300);
+        }
+
+        // Initialize romantic animations
+        createRomanticAnimations();
+
+        // Rest of your existing JavaScript code for the card game
+        window.onload = () => {
+            const savedNumber = localStorage.getItem('selectedCard');
+            if (savedNumber) {
+                result.textContent = `Selected card: ${savedNumber}`;
+            }
+        };
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        async function animateShuffle() {
+            const duration = 5000;
+            const interval = 100;
+            const startTime = Date.now();
+
+            shuffleSound.play();
+            shuffleSound.loop = true;
+
+            while (Date.now() - startTime < duration) {
+                const newPositions = shuffle([...positions]);
+                cards.forEach((card, index) => {
+                    const randomY = Math.random() * 30 - 15;
+                    card.style.transform = `translateY(${randomY}px)`;
+                    card.style.left = `${newPositions[index]}px`;
+                });
+                await new Promise(resolve => setTimeout(resolve, interval));
+            }
+
+            shuffleSound.loop = false;
+            shuffleSound.pause();
+            shuffleSound.currentTime = 0;
+
+            cardPositions = shuffle([...cardPositions]);
+            cards.forEach((card, index) => {
+                card.style.transform = '';
+                card.style.left = `${positions[cardPositions[index]]}px`;
+            });
+        }
+
+        async function startGame() {
+            if (isShuffling) return;
+            
+            startBtn.disabled = true;
+            isShuffling = true;
+            canSelect = false;
+            
+            cards.forEach(card => {
+                card.classList.remove('selected');
+                card.classList.add('flipped');
+            });
+            result.textContent = '';
+            localStorage.removeItem('selectedCard');
+
+            await animateShuffle();
+            
+            isShuffling = false;
+            canSelect = true;
+            startBtn.disabled = false;
+        }
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (!canSelect || card.classList.contains('selected')) return;
+
+                const number = card.dataset.number;
+                
+                cards.forEach(c => {
+                    c.classList.remove('flipped');
+                });
+                
+                card.classList.add('selected');
+                localStorage.setItem('selectedCard', number);
+                result.textContent = `Selected card: ${number}`;
+                
+                canSelect = false;
+            });
+        });
+	</script>
+</body>
+</html>
