@@ -18,6 +18,7 @@
 }
 
 body {
+	text-align:center;
     margin: 0;
     min-height: 100vh;
     display: flex;
@@ -71,9 +72,9 @@ body.aesthetic {
 
 .cards-container {
     display: flex;
-    gap: 30px;
-    margin: 20px 0;
-    perspective: 1000px;
+    gap: 15px;
+    margin: 15px 0;
+    perspective: 700px;
     min-height: 300px;
     position: relative;
     width: 800px;
@@ -86,6 +87,7 @@ body.aesthetic {
     transform-style: preserve-3d;
     cursor: pointer;
     transition: all 0.3s;
+	color:bisque;
 }
 
 .card.flipped {
@@ -94,6 +96,7 @@ body.aesthetic {
 
 .card.selected {
     border: 3px solid #4CAF50;
+	border-radius: 17px;
 }
 
 .card-face {
@@ -220,7 +223,7 @@ body.aesthetic {
     <div class="theme-switch">
         <button class="theme-btn" onclick="toggleTheme()">Switch Theme</button>
     </div>
-    <div class="container">
+    <div class="container" style=" flex: 100px">
         <h1>Thlang rawh le🤣🤣</h1>
         <button class="start-btn" onclick="startGame()">Start Shuffle</button>
         <div class="cards-container">
@@ -269,7 +272,7 @@ body.aesthetic {
             } else {
                 body.classList.remove('aesthetic');
                 body.classList.add('romantic');
-                title.textContent = '♥️ Card Game ♥️';
+                title.textContent = 'Thlang Lawh Lee😆😆';
                 currentTheme = 'romantic';
                 clearAnimations();
                 createRomanticAnimations();
