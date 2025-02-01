@@ -72,17 +72,17 @@ body.aesthetic {
 
 .cards-container {
     display: flex;
-    gap: 15px;
-    margin: 15px 0;
-    perspective: 700px;
+    gap: 10px;
+    margin: 10px 0;
+    perspective: 1000px;
     min-height: 300px;
     position: relative;
-    width: 800px;
+    width: 550px;
 }
 
 .card {
-    width: 200px;
-    height: 300px;
+    width: 150px;
+    height: 200px;
     position: absolute;
     transform-style: preserve-3d;
     cursor: pointer;
@@ -223,7 +223,7 @@ body.aesthetic {
     <div class="theme-switch">
         <button class="theme-btn" onclick="toggleTheme()">Switch Theme</button>
     </div>
-    <div class="container" style=" flex: 100px">
+    <div class="container" >
         <h1>Thlang rawh le🤣🤣</h1>
         <button class="start-btn" onclick="startGame()">Start Shuffle</button>
         <div class="cards-container">
@@ -231,11 +231,11 @@ body.aesthetic {
                 <div class="card-face card-front">1</div>
                 <div class="card-face card-back">♥️</div>
             </div>
-            <div class="card" data-number="2" style="left: 250px">
+            <div class="card" data-number="2" style="left: 200px">
                 <div class="card-face card-front">2</div>
                 <div class="card-face card-back">♥️</div>
             </div>
-            <div class="card" data-number="3" style="left: 500px">
+            <div class="card" data-number="3" style="left: 400px">
                 <div class="card-face card-front">3</div>
                 <div class="card-face card-back">♥️</div>
             </div>
@@ -254,7 +254,7 @@ body.aesthetic {
         const shuffleSound = document.getElementById('shuffleSound');
         let isShuffling = false;
         let canSelect = false;
-        let positions = [0, 250, 500];
+        let positions = [0, 200, 400];
         let cardPositions = [0, 1, 2];
         let currentTheme = 'romantic';
 
