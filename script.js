@@ -43,20 +43,24 @@ for (let i = 0; i < numberOfTexts; i++) {
 }
 
 
-function dayDifference() {
-    const startDate = new Date("2024-09-01");
-    const now = new Date();
+ const startDate = new Date("2024-09-01T00:00:00");
 
-    const diffMs = now - startDate;
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    const diffWeeks = Math.floor(diffDays / 7);
-    const diffMonths = (now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth());
+    function dayDifference() {
+      const now = new Date();
+      const diffMs = now - startDate;
 
-    document.getElementById('hours').innerHTML = `${diffHours} Hours`;
-    document.getElementById('days').innerHTML = `${diffDays} Days`;
-    document.getElementById('weeks').innerHTML = `${diffWeeks} Weeks`;
-    document.getElementById('months').innerHTML = `${diffMonths} Months`;
-  }
+      const diffSeconds = Math.floor(diffMs / 1000);
+      const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const diffWeeks = Math.floor(diffDays / 7);
+      const diffMonths = (now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth());
 
-  window.onload = dayDifference;
+      document.getElementById('seconds').innerHTML = `Seconds: ${diffSeconds}`;
+      document.getElementById('hours').innerHTML = `Hours: ${diffHours}`;
+      document.getElementById('days').innerHTML = `Days: ${diffDays}`;
+      document.getElementById('weeks').innerHTML = `Weeks: ${diffWeeks}`;
+      document.getElementById('months').innerHTML = `Months: ${diffMonths}`;
+    }
+
+    dayDifference();
+    setInterval(dayDifference, 1000);
