@@ -1,5 +1,5 @@
 const textContainer = document.getElementById('text-container');
-const phrases = ["Haw Loang", "Waaaa", "Kha i mit atangin tui alo chhuak ania", "83", "Lut ila", "Hman em", "Innei tawh mai ila", "A pawilo mai"];
+const phrases = ["Haw Loang",'Ehe','Mifel nu','One nge i duh','Two nge','Khawi nge i duh zawk zawk', "Waaaa", "Kha i mit atangin tui alo chhuak ania", "83", "Lut ila", "Hman em", "Innei tawh mai ila", "A pawilo mai"];
 const numberOfTexts = 20; // Number of texts to display
 
 // Generate text elements
@@ -41,3 +41,22 @@ for (let i = 0; i < numberOfTexts; i++) {
 
     textContainer.appendChild(textElement);
 }
+
+
+function dayDifference() {
+    const startDate = new Date("2024-09-01");
+    const now = new Date();
+
+    const diffMs = now - startDate;
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const diffWeeks = Math.floor(diffDays / 7);
+    const diffMonths = (now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth());
+
+    document.getElementById('hours').innerHTML = `${diffHours} Hours`;
+    document.getElementById('days').innerHTML = `${diffDays} Days`;
+    document.getElementById('weeks').innerHTML = `${diffWeeks} Weeks`;
+    document.getElementById('months').innerHTML = `${diffMonths} Months`;
+  }
+
+  window.onload = dayDifference;
