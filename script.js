@@ -50,16 +50,20 @@ for (let i = 0; i < numberOfTexts; i++) {
       const diffMs = now - startDate;
 
       const diffSeconds = Math.floor(diffMs / 1000);
+      const diffMinutes = Math.floor(diffMs / (1000 * 60));
       const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
       const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
       const diffWeeks = Math.floor(diffDays / 7);
       const diffMonths = (now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth());
+      const diffYears = Math.floor(diffMonths / 12);
 
       document.getElementById('seconds').innerHTML = `Seconds: ${diffSeconds} 🤭`;
+      document.getElementById('minutes').innerHTML = `Minutes: ${diffMinutes}`;
       document.getElementById('hours').innerHTML = `Hours: ${diffHours}`;
       document.getElementById('days').innerHTML = `Days: ${diffDays}`;
       document.getElementById('weeks').innerHTML = `Weeks: ${diffWeeks}`;
       document.getElementById('months').innerHTML = `Months: ${diffMonths}`;
+      document.getElementById('years').innerHTML = `Years: ${diffYears}`;
     }
 
     dayDifference();
