@@ -55,7 +55,7 @@ for (let i = 0; i < numberOfTexts; i++) {
       const diffWeeks = Math.floor(diffDays / 7);
       const diffMonths = (now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth());
 
-      document.getElementById('seconds').innerHTML = `Seconds: ${diffSeconds}`;
+      document.getElementById('seconds').innerHTML = `Seconds: ${diffSeconds} 🤭`;
       document.getElementById('hours').innerHTML = `Hours: ${diffHours}`;
       document.getElementById('days').innerHTML = `Days: ${diffDays}`;
       document.getElementById('weeks').innerHTML = `Weeks: ${diffWeeks}`;
